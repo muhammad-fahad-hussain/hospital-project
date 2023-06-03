@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+  <script>
+    function Portals() {
+      var usertype = document.getElementById("user-type").value;
+      var username = document.getElementById("Portalusername").value;
+      var password = document.getElementById("PortalPassword").value;
+
+      if (usertype === "admin") {
+        if (username === "fahad" && password === "fahad") {
+          window.location.href = "/AdminPortal/admindashboard.html";
+        } else if (username === "mehboob" && password === "mehboob") {
+          window.location.href = "/AdminPortal/admindashboard.html";
+        } else {
+          alert("Invalid account credentials. Please try again.");
+        }
+      } else if (usertype === "receptionist") {
+        if (username === "mehboob" && password === "mehboob") {
+          window.location.href = "/Receptionist/ReceptionistDashboard.html";
+        } else if (username === "taimoor" && password === "taimoor") {
+          window.location.href = "/Receptionist/ReceptionistDashboard.html";
+        } else {
+          alert("Invalid account credentials. Please try again.");
+        }
+      } else if (usertype === "doctor") {
+        if (username === "fahad" && password === "fahad") {
+          window.location.href = "/Doctor/DoctorDashboard.html";
+        } else if (username === "mehboob" && password === "mehboob") {
+          window.location.href = "/Doctor/DoctorDashboard.html";
+        } else {
+          alert("Invalid account credentials. Please try again.");
+        }
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Login</h1>
+  <form id="login-form">
+    <label for="user-type">User Type:</label>
+    <select id="user-type">
+      <option value="admin">Admin</option>
+      <option value="receptionist">Receptionist</option>
+      <option value="doctor">Doctor</option>
+    </select>
+    <br>
+    <label for="Portalusername">Username:</label>
+    <input type="text" id="Portalusername">
+    <br>
+    <label for="PortalPassword">Password:</label>
+    <input type="password" id="PortalPassword">
+    <br>
+    <button type="button" onclick="Portals()">Login</button>
+  </form>
+</body>
+</html>

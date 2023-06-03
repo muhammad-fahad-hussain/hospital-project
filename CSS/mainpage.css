@@ -1,0 +1,332 @@
+/*  ====================================
+                  Header
+    ==================================== */
+
+/*Style Navigation-Appointment*/
+
+.Navigation-appointment {
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  background: linear-gradient(to right, #065085, rgb(56, 160, 101), #6589b3);
+
+}
+
+.logo {
+  font-size: 2em;
+  color: #fff;
+  margin-left: 53px;
+}
+
+.Navigation-btn {
+  display: inline-block;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  padding: 20px;
+  transition: 0.5s;
+
+}
+
+.Navigation-appointment nav {
+  font-size: 1.1em;
+  margin-right: 20px;
+}
+
+.icon-Navigation-btn {
+  display: inline-block;
+  margin-right: 10px;
+  width: 30px;
+  height: 30px;
+
+}
+
+.Navigation-btn:hover {
+  background-color: rgba(64, 68, 73, 0.534);
+  color: black;
+
+}
+
+/* using media query */
+@media screen and (max-width: 987px) {
+  .Navigation-appointment {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .Navigation-appointment h2.logo {
+    margin-bottom: 20px;
+  }
+
+  .Navigation-appointment nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .Navigation-appointment a.Navigation-btn {
+    margin: 10px;
+  }
+}
+
+/*  ====================================
+                  navbar
+    ==================================== */
+.nav-item {
+  color: #333;
+  padding: 8px;
+
+}
+
+.nav-item:hover {
+  background-color: rgba(52, 55, 58, 0.534);
+  color: whitesmoke;
+  font-weight: 500;
+}
+
+/*  ====================================
+             background Image
+    ==================================== */
+.bg-image {
+  background-image: url("/1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  background-color: rgba(50, 79, 108, 0.6);
+  background-blend-mode: overlay;
+
+}
+
+
+.btn-box {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+
+}
+
+.btn-box a {
+  background-color: #3366cc;
+  border: none;
+  color: #ffffff;
+  padding: 15px 25px;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+.btn-box a:hover {
+  background-color: #003399;
+}
+
+.text-container {
+  color: white;
+  font-size: 3em;
+  font-weight: bold;
+}
+
+
+.card {
+  padding: 40px;
+}
+
+
+/* 
+================================
+            banner
+================================
+*/
+
+
+.banner {
+  margin-top: -50px;
+}
+
+@media screen and (max-width: 987px) {
+
+  .banner {
+    margin-top: 0;
+  }
+}
+
+
+/* 
+================================
+           About us
+================================
+*/
+
+.font-bold {
+  font-weight: 700;
+
+}
+
+.fst-italic {
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.2em;
+}
+
+/* 
+================================
+     Center Of Excellence
+================================
+*/
+.excellence {
+  background-image: linear-gradient(to right, rgb(186, 210, 177), white, rgb(186, 210, 177), rgb(185, 209, 177));
+}
+
+.excellence-h2 {
+  color: green !important;
+  font-weight: bold !important;
+}
+
+.button-excellence {
+  background-color: green !important;
+  padding-left: 25px !important;
+  padding-right: 25px !important;
+  padding-top: 12px !important;
+  padding-bottom: 12px !important;
+  font-weight: bold !important;
+}
+
+.button-excellence:hover {
+  background-color: #fff !important;
+}
+
+
+.font-weight-bold {
+  font-weight: bold !important
+}
+
+
+/* 
+ ================================
+        Health Articles
+ ================================
+*/
+@media (max-width: 767px) {
+  .carousel-inner .carousel-item>div {
+    display: none;
+  }
+
+  .carousel-inner .carousel-item>div:first-child {
+    display: block;
+  }
+}
+
+.carousel-inner .carousel-item.active,
+.carousel-inner .carousel-item-next,
+.carousel-inner .carousel-item-prev {
+  display: flex;
+}
+
+/* medium and up screens */
+@media (min-width: 768px) {
+
+  .carousel-inner .carousel-item-end.active,
+  .carousel-inner .carousel-item-next {
+    transform: translateX(25%);
+  }
+
+  .carousel-inner .carousel-item-start.active,
+  .carousel-inner .carousel-item-prev {
+    transform: translateX(-25%);
+  }
+}
+
+.carousel-inner .carousel-item-end,
+.carousel-inner .carousel-item-start {
+  transform: translateX(0);
+}
+
+
+
+
+
+/*  
+===============================
+           Footer
+=============================== */
+.set {
+  text-decoration: none;
+  color: beige;
+
+}
+
+.set:hover {
+  color: forestgreen;
+}
+
+
+
+/*  
+===============================
+       Department Page
+=============================== */
+
+.Department button:hover {
+  border: 1px solid #0b5ed7;
+  background-color: beige;
+  color: black;
+}
+
+
+@media screen and (min-width:988px) {
+  .Department p {
+    color: forestgreen;
+    margin-top: 65px !important;
+  }
+
+  .Department button {
+    padding: 16px !important;
+    font-size: 1.1em;
+    border-radius: 15px !important;
+    margin-left: 150px !important;
+  }
+}
+
+@media screen and (max-width:987px) {
+  .Department {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin-top: -50px;
+  }
+
+  .Department p {
+    margin-top: 0px !important;
+    text-align: center;
+    color: forestgreen;
+
+  }
+
+  .Department button {
+    margin-bottom: 10px;
+    border-radius: 15px !important;
+  }
+}
+
+/* Our Anesthesiologist Doctors */
+.botton-doctor {
+  padding: 10px !important;
+  border: 1px solid #0b5ed7 !important;
+  color: black !important;
+  background-color: beige !important;
+  margin-left: 28px;
+  border-radius: 8px;
+}
+
+.botton-doctor:hover {
+  color: beige !important;
+  background-color: #0b5ed7 !important;
+}
+
+
+/*  */

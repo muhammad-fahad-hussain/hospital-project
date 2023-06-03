@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctors Hospital</title>
+    <link rel="stylesheet" href="/CSS/mainpage.css">
+    <link rel="stylesheet" href="bootstrap-5.1.3-dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
+
+    <script src="./bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
+    <script src="./bootstrap-5.1.3-dist/js/jquery-3.5.1.js"></script>
+    <script src="./bootstrap-5.1.3-dist/js/jquery.dataTables.min.js"></script>
+    <script src="/Javascript/scripts.js"></script>
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+
+</head>
+
+<body>
+    <!-- 
+    ====================================
+                  Header
+    ====================================
+    -->
+
+    <nav class="Navigation-appointment">
+        <h2 class="logo">Doctors Hospital</h2>
+        <nav>
+            <button data-bs-toggle="modal" data-bs-target="#appoinmentModal"
+                style="background-color: transparent; border: none;"> <a href="#" class="Navigation-btn"> <img
+                        src="icon/calendar.png" alt="icon" height="30px" width="30px" class="icon-Navigation-btn">
+                    Appointment</a></button>
+            <a href="/signInPatient.html" class="Navigation-btn" target="_blank"><img src="icon/log-in.png" alt="" height="30px" width="30px"
+                    class="icon-Navigation-btn" > Sign In</a>
+        </nav>
+    </nav>
+
+
+
+    <div class="modal " id="appoinmentModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-dark">
+                    <h5 class="modal-title text-light">Appointment</h5>
+                    <button class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-md-12">
+                        <form action="">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="" class="form-label">Patient Name:</label>
+                                    <input type="text" name="" id="" class="form-control" placeholder="Enter Name"
+                                        required>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="" class="form-label">Select Speciality</label>
+                                    <select name="" id="" class="form-select text-dark" required>
+                                        <option value="Select Speciality" class="" selected>Select Speciality</option>
+                                        <option value="Anaesthesia">Anaesthesia</option>
+                                        <option value="Cardiology">Cardiology</option>
+                                        <option value="Dental">Dental</option>
+                                        <option value="Emergency">Emergency</option>
+                                        <option value="Endocrinology">Endocrinology</option>
+                                        <option value="Gastroenterology">Gastroenterology</option>
+                                        <option value="Neurology">Neurology</option>
+                                        <option value="EYE">Ophthalmology (EYE)</option>
+                                        <option value="ENT">Otolaryngology (ENT)</option>
+                                        <option value="Psychology">Psychology</option>
+                                        <option value="Pulmonology">Pulmonology</option>
+                                        <option value="Rheumatology">Rheumatology</option>
+                                        <option value="UROLOGY">UROLOGY</option>
+                                        <option value="Orthopaedics">Orthopaedics</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-sm-6">
+                                    <label for="" class="form-label">Email:</label>
+                                    <input type="email" name="" id="" class="form-control" placeholder="Enter Email"
+                                        required>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="" class="form-label">Contact No:</label>
+                                    <input type="tel" name="" id="" class="form-control" placeholder="Enter Contact No"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-sm-6">
+                                    <label for="" class="form-label">Date Of Birth:</label>
+                                    <input type="date" name="" id="" class="form-control" required>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="" class="form-label">Date:</label>
+                                    <input type="date" name="" id="" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-sm-6">
+                                    <label for="" class="form-label">Time:</label>
+                                    <input type="time" name="" id="" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="col-sm-8 mt-3">
+                                <label for="" class="form-label">Message:</label>
+                                <textarea class="form-control" name="" id="" rows="5" placeholder="Message"></textarea>
+                            </div>
+                           <input type="submit" name="" id="" class="btn btn-primary mt-3">
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark"
+        style="background:linear-gradient(to right , #51478a , #3f7897,#16aeb9)">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/mainpage.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/about.html">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/doctor.html">Doctors</a>
+                </li>
+                <!-- Department Dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" type="button"
+                        data-bs-toggle="dropdown">
+                        Departments
+                    </a>
+                    <ul class="dropdown-menu ">
+                        <li><a class="dropdown-item" href="/departmentAnaesthesia.html" target="_blank">Anaesthesia</a>
+                        </li>
+                        <li><a class="dropdown-item" href="#" target="_blank">Cardiology</a></li>
+                        <li><a class="dropdown-item" href="#" target="_blank">Dental</a></li>
+                        <li><a class="dropdown-item" href="#" target="_blank">Emergency</a></li>
+                        <li><a class="dropdown-item" href="#" target="_blank">Endocrinology</a></li>
+                        <li><a class="dropdown-item" href="#" target="_blank">Gastroenterology</a></li>
+                        <li><a class="dropdown-item" href="#" target="_blank">Neurology</a></li>
+                        <li><a class="dropdown-item" href="#" target="_blank">Orthopaedics</a></li>
+                        <li><a class="dropdown-item" href="#" target="_blank">Ophthalmology (EYE)</a></li>
+                        <li><a class="dropdown-item" href="#" target="_blank">Otolaryngology (ENT)</a></li>
+                        <li><a class="dropdown-item" href="#" target="_blank">Psychology</a></li>
+                        <li><a class="dropdown-item" href="#" target="_blank">Pulmonology</a></li>
+                        <li><a class="dropdown-item" href="#" target="_blank">Rheumatology</a></li>
+                        <li><a class="dropdown-item" href="#" target="_blank">UROLOGY</a></li>
+                    </ul>
+
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" type="button"
+                        data-bs-toggle="dropdown">
+                        Services
+                    </a>
+                    <ul class="dropdown-menu ">
+                        <li><a class="dropdown-item" href="/AdminPortal/signinportal.html" target="_blank">Admin portal</a></li>
+
+                        <li><a class="dropdown-item" href="/signInPatient.html" target="_blank"> Patient portal</a></li>
+                        <li><a class="dropdown-item" href="/AdminPortal/signinportal.html" target="_blank">Doctor Portal</a></li>
+                        <li><a class="dropdown-item" href="/AdminPortal/signinportal.html" target="_blank">Receptionist Portal</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contact.html">Contact Us</a>
+                </li>
+
+            </ul>
+
+        </div>
+    </nav>
+    <!-- 
+  ======================================
+           breadcrumb
+  ======================================
+ -->
+    <div class="col-md-12 bg-light px-5 pt-5" style="height: 30vh ;">
+        <!-- using breadcrumb bootstrap class  -->
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb px-5">
+                <li class="breadcrumb-item "><a href="/mainpage.html" class="text-decoration-none text-primary">Home</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">About</li>
+            </ol>
+        </nav>
+        <p class="px-5"><span class="text-dark font-weight-bold display-6">About </span><span
+                style="color: forestgreen;" class="font-weight-bold display-6">Doctor Hospitals</span> </p>
+    </div>
+    <!-- 
+  ======================================
+             About
+  ======================================
+ -->
+    <div class="container">
+        <div class="container-fluid">
+            <div class="col-lg-12 mt-5">
+
+                <h2 class="mx-5 font-weigth-bold" style="color:forestgreen;"> <span style="color:black;">About</span>
+                    Doctor Hospitals Group</h2>
+                <p class="mx-5 mt-4">Doctors Hospitals Group is a medical complex in Pakistan that was founded with the
+                    goal of providing specialized services to patients in the areas of orthopedics and traumatology. The
+                    idea behind the group was to provide professional consultations and treatments to patients without
+                    the need for them to travel abroad, particularly those in the Punjab province and surrounding areas.
+
+                    <br><br>
+
+                    One of the key benefits of the Doctors Hospitals Group is that patients no longer need to travel
+                    abroad for medical treatment. This not only saves them the cost and inconvenience of travel, but it
+                    also ensures that they can receive the highest quality care possible without the need for language
+                    translation or cultural barriers. <br><br>
+
+                    The Doctors Hospitals Group has a strong commitment to patient care, and this is reflected in its
+                    mission to provide quality healthcare in all specialties with the highest level of ethical standards
+                    and personalized care. It has a patient-centric approach, which means that patients are at the
+                    center of everything it does. <holders class="br"><br></holders>
+
+                    Mission of the Group is ‘To provide quality healthcare in all specialties with highest level of
+                    ethical standards and personalized care to achieve superior medical outcome and patient
+                    satisfaction. <br><br>
+
+                    DH Group said that the Group is inspired by the verse from the Holy Quran:
+                </p>
+
+                <div class=" mt-4 mb-4 mx-5 px-4 py-3 pt-4 text-center" style="background-color: #97afbd;">
+                    <h5>ومن احياها فكأنما احيا الناس جميعا“ المائد 32”</h5>
+                    <h5 class="mt-3">“And if anyone saved a life, it would be as if he saved the life of all mankind.”
+                        Al-Maidah (32)</h5>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- 
+          ======================================
+                    Our Purpose
+          ======================================
+     -->
+    <div class="col-lg-12 mt-5 mb-4" style="background-color: #061b4e;">
+        <div class="container">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-4 ">
+                        <div class="card mt-5 mb-5" style="height: 20rem;">
+                            <div class="card-body text-center justify-content-center">
+                                <h5 class="card-title mt-3">Our Purpose</h5>
+                                <p class="card-text">At Doctors Hospital, our purpose is to positively impact people's
+                                    health and relieve their suffering.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card mt-5 mb-5 bg-primary" style="height: 20rem;">
+                            <div class="card-body text-center justify-content-center ">
+                                <h5 class="card-title" style="color:aliceblue">Our Values</h5>
+                                <p class="card-text" style="color:aliceblue">Our core values are at the center of
+                                    everything we do as we strive to provide world-class medical care to our patients.
+                                    We are committed to creating a strong foundation for our dynamic and resilient team
+                                    through eight fundamental values.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 ">
+                        <div class="card mt-5 mb-5" style="height: 20rem;">
+                            <div class="card-body text-center justify-content-center">
+                                <h5 class="card-title mt-3">Our Vision</h5>
+                                <p class="card-text">We aim to be the most accessible and agile healthcare group in the
+                                    region and provide innovative, comprehensive, patient-centric care to all patients
+                                    anywhere, anytime.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- 
+          ======================================
+                Messages From Our Management
+          ======================================
+     -->
+
+    <div class="container-fluid mt-3">
+        <h3 style="color: forestgreen;"><span style="color:darkslategray">Messages From</span> Our Management</h3>
+        <p style="border-top: forestgreen 4px solid; width: 150px;"></p>
+    </div>
+    <div class="container mt-5">
+        <div class="container-fluid ">
+            <div class="row px-5 mb-3">
+                <div class="col-lg-4 px-5">
+                    <img src="/image/mehboob.jpg" class="rounded-circle mx-5" alt="img"
+                        style="height: 150px; width: 150px;">
+                    <h2 class="text-center"><span style="color:darkslategray; margin-left: -30px;">Mehboob Waqar</span>
+                    </h2>
+                    <p class="bg-primary " style="border-top: 4px solid; width: 100px;margin-left: 70px !important;">
+                    </p>
+                    <p class="text-muted mx-5">PRESIDENT / FOUNDER</p>
+                    <!-- card -->
+
+                    <div class="card-body border">
+                        <p class="card-text p-0">
+                            With the blessing of Allah and the trust of our customers, we have been able to establish
+                            ourselves as the most reputed private hospital in the region within a short period of time.
+                            Our strategy was to focus on sub-specialties. Our vision and activities go beyond providing
+                            reliable quality medical care to patients who come to us. As corporate citizens, we believe
+                            that we have the social responsibility towards the community welfare programs. In Doctors
+                            Hospital we believe that continuous education is everybody’s responsibility. We are
+                            continuously improving our services to exceed the needs and expectations of our patients.
+                        </p>
+
+                    </div>
+                </div>
+                <div class="col-lg-4 px-5">
+                    <img src="/image/fahad.jpg" class="rounded-circle mx-5" alt="img"
+                        style="height: 150px; width: 150px;">
+                    <h2><span style="color:darkslategray">Muhammad Fahad</span></h2>
+                    <p class="bg-primary " style="border-top: 4px solid; width: 100px;margin-left: 70px !important;">
+                    </p>
+                    <p class="text-muted text-center" style=" width: 140px;margin-left: 50px !important;">VICE PRESIDENT
+                    </p>
+                    <div class="card-body border">
+                        <p class="card-text ">
+
+                            The passage you provided describes the concept behind Doctors Hospitals Group, a medical
+                            complex in Pakistan that specializes in orthopedics and traumatology services. The idea was
+                            to provide professional consultations and treatments for patients in Pakistan, specifically
+                            in the Punjab province and surrounding areas, without the need for them to go abroad for
+                            medical care.
+
+                            By providing these specialized services locally, patients in the region can benefit from
+                            more economical treatment options, reduced expenses, and saved time, while still receiving
+                            the most advanced medical care available without language barriers. This not only helps
+                            patients, but also contributes to the development of the healthcare industry in the region.
+                        </p>
+
+                    </div>
+                </div>
+                <div class="col-lg-4 px-5">
+                    <img src="/image/taimoor.jpg" class="rounded-circle mx-5" alt="img"
+                        style="height: 150px; width: 150px;">
+                    <h2> <span style="color:darkslategray;margin-left: 20px !important;"> Taimoor Nasir</span></h2>
+                    <p class="bg-primary " style="border-top: 4px solid; width: 100px;margin-left: 70px !important;">
+                    </p>
+                    <p class="text-muted" style="margin-left: 110px !important;">CEO</p>
+                    <div class="card-body border">
+                        <p class="card-text ">
+                            As CEO of Doctors Hospital, I feel proud to be associated with Doctors Hospital – Lahore.
+                            One of the best hospital across the Pakistan. My aim is to achieve patient’s satisfaction
+                            through high-quality healthcare services. Staff satisfaction through healthy work
+                            environment and community satisfaction through corporate social responsibilities.
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 
+  ===============================
+           Footer
+  ===============================
+ -->
+ <div class="col-md-12" style="background-color: #0e1d1c;">
+    <div class="container">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-3 ">
+            <h4 class="mt-5 mb-5" style="color: forestgreen;"> <span style="color: beige;">Doctors</span>
+              Hospital</h4>
+            <p style="color: beige;">Doctors Hospital is the best hospital in Lahore, providing world-class
+              care to all patients. We are a multi-specialty hospital with cutting-edge integrated
+              technology and Western-trained staff.</p>
+
+          </div>
+          <!-- Use Css .set -->
+          <!-- General -->
+          <div class="col-md-3  px-5">
+            <ul class="list-unstyled mx-5">
+              <li>
+                <h4 class="mt-5 mb-5" style="color:#fff">General</h4>
+              </li>
+              <li>
+                <a href="/mainpage.html" class="set">Home</a>
+              </li>
+              <li>
+                <a href="/about.html" class="set">About</a>
+              </li>
+              <li>
+                <a href="AdminPortal/signinportal.html" class="set">Services</a>
+              </li>
+              <li>
+                <a href="/doctor.html" class="set">Doctor</a>
+              </li>
+              <li>
+                <a href="departmentAnaesthesia.html" class="set">Department</a>
+              </li>
+              <li>
+                <a href="/contact.html" class="set">Contect Us</a>
+              </li>
+
+            </ul>
+
+          </div>
+          <!-- Email -->
+          <div class="col-md-3 px-4">
+            <ul class="list-unstyled">
+              <li>
+                <h4 class="mt-5 mb-5" style="color:#fff">Email</h4>
+              </li>
+              <li class="set">
+                <i class="fas fa-envelope-open-dollar"></i>
+                <a href="mailto:mfahadpk176@gmail.com" class="set mx-2">General Enquiry</a>
+              </li>
+              <li class="set">
+                <i class="fas fa-envelope-open-dollar"></i>
+                <a href="mailto:mehboobwaqar444@gmail.com" class="set mx-2">Suport,Complaints &
+                  Feedback</a>
+              </li>
+              <li class="set">
+                <i class="fas fa-envelope-open-dollar"></i>
+                <a href="mailto:mfahadpk176@gmail.com" class="set mx-2">JCI Related Concerns</a>
+              </li>
+
+            </ul>
+
+          </div>
+          <!-- support -->
+          <div class="col-md-3 px-5">
+            <ul class="list-unstyled mx-5 px-2">
+              <li>
+                <h4 class="mt-5 mb-5" style="color:#fff">Support</h4>
+              </li>
+              <li>
+                <a href="/NewPatientRegistration.html" class="set" target="_blank">Sign Up</a>
+              </li>
+              <li>
+                <a href="/signInPatient.html" class="set" target="_blank">Sign In</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr style="color: #39c7cc; height: 3px;">
+    <!-- Copyright -->
+    <div class="container">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-5">
+            <p style="color: #fff;">©Copyright 2022. Doctors Hospital Hospital. All Rights Reserved.</p>
+          </div>
+          <div class="col-md-3">
+            <ul class="list-unstyled d-flex justify-content-between px-3">
+              <li>
+                <a href="#" class="set" target="_blank">Privacy Policy</a>
+              </li>
+              <li>
+                <a href="/about.html" class="set" target="_blank">About Us</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-1">
+
+          </div>
+          <div class="col-md-2">
+            <ul class="list-unstyled d-flex justify-content-between">
+              <li>
+                <a href="https://www.facebook.com/mehboob.waqar.5?mibextid=ZbWKwL" class="set" target="_blank"><i
+                    class="fab fa-facebook"></i></a>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/in/muhammadfahadhussain/" class="set" target="_blank"><i
+                    class="fab fa-linkedin"></i></a>
+              </li>
+              <li>
+                <a href="https://instagram.com/its_sharii01?igshid=YmMyMTA2M2Y=" class="set" target="_blank"><i
+                    class="fab fa-instagram"></i></a>
+              </li>
+              <li>
+                <a href="https://www.twitter.com/" class="set" target="_blank"><i class="fab fa-twitter"></i></a>
+              </li>
+              <li>
+                <a href="https://www.youtube.com/" class="set" target="_blank"><i class="fab fa-youtube"></i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+</body>
+
+</html>

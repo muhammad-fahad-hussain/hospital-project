@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctors Hospital</title>
+    <link rel="stylesheet" href="mainpage.css">
+    <link rel="stylesheet" href="bootstrap-5.1.3-dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
+
+    <script src="bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
+    <script src="bootstrap-5.1.3-dist/js/jquery-3.5.1.js"></script>
+    <script src="bootstrap-5.1.3-dist/js/jquery.dataTables.min.js"></script>
+    <script src="bootstrap-5.1.3-dist/js/dataTables.bootstrap5.min.js"></script>
+    <script src="Javascript/scripts.js"></script>
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+</head>
+
+<body>
+    <!-- 
+    ====================================
+                  Header
+    ====================================
+    -->
+    <!-- use css for this navbar -->
+    <nav class="Navigation-appointment">
+        <h2 class="logo">Doctors Hospital</h2>
+        <nav>
+            <button data-bs-toggle="modal" data-bs-target="#appoinmentModal"
+                style="background-color: transparent; border: none;"> <a href="#" class="Navigation-btn"> <img
+                        src="icon/calendar.png" alt="icon" height="30px" width="30px" class="icon-Navigation-btn">
+                    Appointment</a></button>
+            <a href="signInPatient.html" class="Navigation-btn" target="_blank"><img src="icon/log-in.png" alt=""
+                    height="30px" width="30px" class="icon-Navigation-btn"> Sign In</a>
+        </nav>
+    </nav>
+
+<!-- 
+    ====================
+      appointment Modal
+    ====================
+ -->
+    <div class="modal " id="appoinmentModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-dark">
+                    <h5 class="modal-title text-light">Appointment</h5>
+                    <button class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-md-12">
+                        <form action="" name="appointmentForm">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="" class="form-label">Patient Name:</label>
+                                    <input type="text" name="" id="nameAppintment" class="form-control" placeholder="Enter Name"
+                                        >
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="" class="form-label">Select Speciality</label>
+                                    <select name="" id="" class="form-select text-dark" required>
+                                        <option value="Select Speciality" class="" selected>Select Speciality</option>
+                                        <option value="Anaesthesia">Anaesthesia</option>
+                                        <option value="Cardiology">Cardiology</option>
+                                        <option value="Dental">Dental</option>
+                                        <option value="Emergency">Emergency</option>
+                                        <option value="Endocrinology">Endocrinology</option>
+                                        <option value="Gastroenterology">Gastroenterology</option>
+                                        <option value="Neurology">Neurology</option>
+                                        <option value="EYE">Ophthalmology (EYE)</option>
+                                        <option value="ENT">Otolaryngology (ENT)</option>
+                                        <option value="Psychology">Psychology</option>
+                                        <option value="Pulmonology">Pulmonology</option>
+                                        <option value="Rheumatology">Rheumatology</option>
+                                        <option value="UROLOGY">UROLOGY</option>
+                                        <option value="Orthopaedics">Orthopaedics</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-sm-6">
+                                    <label for="" class="form-label">Email:</label>
+                                    <input type="email" name="" id="emailAppintment" class="form-control" placeholder="Enter Email"
+                                        required>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="" class="form-label" >Contact No:</label>
+                                    <input type="tel" name="" id="phoneAppintment" class="form-control" placeholder="Enter Contact No"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-sm-6">
+                                    <label for="" class="form-label">Date Of Birth:</label>
+                                    <input type="date" name="" id="DOBAppintment" class="form-control" required>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="" class="form-label">Date:</label>
+                                    <input type="date" name="dateAppintment" id="dateAppintment" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-sm-6">
+                                    <label for="" class="form-label">Time:</label>
+                                    <input type="time" name="" id="timeAppintment" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="col-sm-8 mt-3">
+                                <label for="" class="form-label">Message:</label>
+                                <textarea class="form-control" name="" id="" rows="5" placeholder="Message"></textarea>
+                            </div>
+                            <input type="submit" name="" value="Submit" id="appointmentForm" class="btn btn-primary mt-3" onclick="AppointmentValidation()">
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark"
+        style="background:linear-gradient(to right , #51478a , #3f7897,#16aeb9)">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" href="mainpage.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="about.html">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="doctor.html">Doctors</a>
+                </li>
+                <!-- Department Dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" type="button"
+                        data-bs-toggle="dropdown">
+                        Departments
+                    </a>
+                    <ul class="dropdown-menu ">
+                        <li><a class="dropdown-item" href="departmentAnaesthesia.html" target="_blank">Anaesthesia</a>
+                        </li>
+                        <li><a class="dropdown-item" href="#" target="_blank">Cardiology</a></li>
+                        <li><a class="dropdown-item" href="#" target="_blank">Dental</a></li>
+                        <li><a class="dropdown-item" href="#" target="_blank">Emergency</a></li>
+                        <li><a class="dropdown-item" href="#" target="_blank">Endocrinology</a></li>
+                        <li><a class="dropdown-item" href="#" target="_blank">Gastroenterology</a></li>
+                        <li><a class="dropdown-item" href="#" target="_blank">Neurology</a></li>
+                        <li><a class="dropdown-item" href="#" target="_blank">Orthopaedics</a></li>
+                        <li><a class="dropdown-item" href="#" target="_blank">Ophthalmology (EYE)</a></li>
+                        <li><a class="dropdown-item" href="#" target="_blank">Otolaryngology (ENT)</a></li>
+                        <li><a class="dropdown-item" href="#" target="_blank">Psychology</a></li>
+                        <li><a class="dropdown-item" href="#" target="_blank">Pulmonology</a></li>
+                        <li><a class="dropdown-item" href="#" target="_blank">Rheumatology</a></li>
+                        <li><a class="dropdown-item" href="#" target="_blank">UROLOGY</a></li>
+                    </ul>
+
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" type="button"
+                        data-bs-toggle="dropdown">
+                        Services
+                    </a>
+                    <ul class="dropdown-menu ">
+                        <li><a class="dropdown-item" href="AdminPortal/signinportal.html" target="_blank">Admin
+                                portal</a></li>
+
+                        <li><a class="dropdown-item" href="signInPatient.html" target="_blank"> Patient portal</a></li>
+                        <li><a class="dropdown-item" href="AdminPortal/signinportal.html" target="_blank">Doctor
+                                Portal</a></li>
+                        <li><a class="dropdown-item" href="AdminPortal/signinportal.html" target="_blank">Receptionist
+                                Portal</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact Us</a>
+                </li>
+
+            </ul>
+
+        </div>
+    </nav>
+    <!-- 
+    ====================================
+             background Image
+    ====================================
+    -->
+    <div class="bg-image ">
+
+        <!--text-container-->
+        <div class="container-fluid d-flex flex-column justify-content-center align-items-center" style="height: 87vh">
+            <!-- use css -->
+            <div class="btn-box">
+                <a class="btn" href="" data-bs-toggle="modal" data-bs-target="#appointmentModal">Appointment</a>
+                <a href="contact.html" class="btn">Contact Us</a>
+            </div>
+            <h2 class="text-center text-white mt-4 font-weigth-bold ">We're here when you need us — for every care
+                in the world.</h2>
+        </div>
+    </div>
+
+    <!--
+        ================================
+                   banner
+        ================================
+    -->
+
+    <!-- use css for banner class-->
+    <div class="container-fluid banner ">
+        <div class="container">
+            <div class="row gx-0">
+                <div class="col-lg-4 ">
+                    <div class="bg-primary d-flex flex-column p-5" style="height: 300px;">
+                        <h3 class="text-white mb-3">Opening Hours</h3>
+                        <div class="d-flex justify-content-between text-white mb-3">
+                            <h6 class="text-white mb-0">Mon - Fri</h6>
+                            <p class="mb-0"> 8:00am - 9:00pm</p>
+                        </div>
+                        <div class="d-flex justify-content-between text-white mb-3">
+                            <h6 class="text-white mb-0">Saturday</h6>
+                            <p class="mb-0"> 8:00am - 7:00pm</p>
+                        </div>
+                        <div class="d-flex justify-content-between text-white mb-3">
+                            <h6 class="text-white mb-0">Sunday</h6>
+                            <p class="mb-0"> 8:00am - 5:00pm</p>
+                        </div>
+                        <a class="btn btn-light" href="">Appointment</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 ">
+                    <div class="bg-dark d-flex flex-column p-5" style="height: 300px;">
+                        <h3 class="text-white mb-3">Search A Doctor</h3>
+                        <div class="date mb-3" id="date" data-target-input="nearest">
+                            <input type="text" class="form-control bg-light border-0 " placeholder="Doctor Name">
+                        </div>
+                        <select class="bg-light border-0 mb-3" style="height: 40px;">
+                            <option selected>Select A Service</option>
+                            <option value="1">Service 1</option>
+                            <option value="2">Service 2</option>
+                            <option value="3">Service 3</option>
+                        </select>
+                        <a class="btn btn-light" href="">Search Doctor</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 ">
+                    <div class="bg-secondary d-flex flex-column p-5" style="height: 300px;">
+                        <h3 class="text-white mb-3">Emergency Contect</h3>
+                        <p class="text-white">In case of any Emergency contect this number any time.</p>
+                        <h2 class="text-white mb-0">+042 345 6789</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--
+        ================================
+                   About us
+        ================================
+    -->
+    <div class="container-fluid mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="section-title">
+                        <h5 class="position-relative d-inline-block text-primary text-uppercase">About Us</h5>
+                    </div>
+
+                    <h1 class="font-bold display-5">The World's Best Hospital That You Can Trust</h1>
+                    <p class="text-body fst-italic mt-5 ">To provide quality healthcare in all
+                        specialties with highest level of ethical standards and personalized care to achieve superior
+                        medical outcome and patient satisfaction.
+                    </p>
+                    <p class="mt-5"> The Doctors Hospitals Group has a strong commitment to patient care, and this is
+                        reflected in its
+                        mission to provide quality healthcare in all specialties with the highest level of ethical
+                        standards
+                        and personalized care. It has a patient-centric approach, which means that patients are at the
+                        center of everything it does. </p>
+                    <div class="row mt-5">
+                        <div class="col-sm-6">
+                            <h5 class="mb-3"><i class="fa fa-check-circle text-primary me-3"></i>Award Winning</h5>
+                            <h5 class="mb-3"><i class="fa fa-check-circle text-primary me-3"></i>Professional Staff</h5>
+                        </div>
+                        <div class="col-sm-6">
+                            <h5 class="mb-3"><i class="fa fa-check-circle text-primary me-3"></i>24/7 Opened</h5>
+                            <h5 class="mb-3"><i class="fa fa-check-circle text-primary me-3"></i>Fair Prices</h5>
+                        </div>
+                    </div>
+                    <a href="about.html" class="btn btn-primary text-white py-3 px-5 mt-3">Learn More</a>
+                </div>
+                <div class="col-lg-5 mt-5">
+                    <img src="image/about.jpg" alt="" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--
+        ================================
+             Center Of Excellence
+        ================================
+    -->
+    <!-- use css -->
+    <div class="container-fluid mt-5 excellence">
+        <div class="container">
+            <div class="row ">
+                <div class="col-lg-12 mt-3 ">
+                    <div class="row">
+                        <div class="col-sm-6 mb-5 display-flex justify-content-center">
+                            <img src="/image/wepik-export-20230427174424.png" alt=""
+                                class="rounded-circle img-fluid mt-3" style="padding-right: 30px;">
+                        </div>
+                        <div class="col-sm-6 mt-3 mb-3">
+                            <h2 class="excellence-h2 mt-5 h1">Center Of Excellence</h2>
+                            <p class="mt-3 lead">Doctors Hospital Lahore has opened a one-of-a-kind Center of Excellence
+                                for women and children, orthopedic conditions, & emergency medicine. Our new Center of
+                                Excellence ensures that you and your family receive the best care possible. With a staff
+                                of experts, you can be sure that you will receive the best treatment available.</p>
+                            <!-- use css button-exce -->
+                            <a href="#" class="btn  mt-3 button-excellence ">Explore More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--
+        ================================
+             Health Articles
+        ================================
+    -->
+    <div class="container-fluid mt-5">
+        <div class="container">
+            <h2 class="font-weight-light text-center mb-5">Health Article</h2>
+            <div class="row mx-auto my-auto justify-content-center">
+                <div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner" >
+                        <div class="carousel-item active">
+                            <div class="col-md-4 ">
+                                <div class="card p-0" style="height: 38rem;">
+                                    <div class="card-img">
+                                        <a href=""> <img src="/image/healthArticle1.webp" class="img-fluid"
+                                                style="width: 450px; height: 300px;"></a>
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">What is Opsoclonus-Myoclonus Syndrome(OMS)?</h5>
+                                        <p class="card-text">OMS is a rare neuroimmunological disorder in children and
+                                            adults. Symptoms include rapid multidirectional conjugate eye movements,
+                                            myoclonus, tremors, encephalopathy, and cerebellar ataxia. Behavioral
+                                            changes in adults and irritability in children are also common.</p>
+                                        <a href="https://www.news-medical.net/health/What-is-Opsoclonus-Myoclonus-Syndrome.aspx"
+                                            class="btn btn-primary mb-0" target="_blank">Learn More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="col-md-4">
+                                <div class="card p-0" style="height: 38rem; ">
+                                    <div class="card-img">
+                                        <a href=""> <img src="/image/healthArticle2.webp" class="img-fluid"
+                                                style="width: 450px; height: 300px;"></a>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="container">
+                                            <h5 class="card-title">Understanding the Role of Epigenetics in Cancer</h5>
+                                            <p class="card-text">Epigenetics plays a vital role in cancer research in
+                                                understanding the difference in nuclear organization, DNA methylation,
+                                                and
+                                                histone modification patterns between cancer cells and normal cells.</p>
+                                            <a href="https://www.news-medical.net/health/Understanding-the-Vital-Role-of-Epigenetics-in-Cancer.aspx"
+                                                target="_blank" class="btn btn-primary mt-4 mb-0">Learn More</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="col-md-4">
+                                <div class="card p-0" style="height: 38rem;">
+                                    <div class="card-img">
+                                        <a href=""> <img src="/image/healthArticle3.webp" class="img-fluid"
+                                                style="width: 450px; height: 300px;"></a>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="container">
+                                            <h5 class="card-title">Circumcised vs. Uncircumcised; Differences in the
+                                                Penile
+                                                Microbiome</h5>
+                                            <p class="card-text">The human body is host to trillions of microbes. The
+                                                penis
+                                                also harbors its own microbiota, which changes with circumcision. This
+                                                shift
+                                                is associated with a significant lowering of the risk of several
+                                                sexually
+                                                transmitted infections (STIs).</p>
+                                            <a href="https://www.news-medical.net/health/Circumcised-vs-Uncircumcised3b-Differences-in-the-Penile-Microbiome.aspx"
+                                                target="_blank" class="btn btn-primary mt-3">Learn More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="col-md-4">
+                                <div class="card p-0" style="height: 38rem;">
+                                    <div class="card-img">
+                                        <a href=""> <img src="/image/healthArticle4.webp" class="img-fluid"
+                                                style="width: 450px; height: 300px;"></a>
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Caught in a Daydream? You May Be Nurturing a Healthier
+                                            Brain</h5>
+                                        <p class="card-text">Daydreaming, or allowing your mind to wander aimlessly, may
+                                            actually be beneficial for your brain. Studies have shown that daydreaming
+                                            can help improve creativity, problem-solving, and overall cognitive
+                                            function.</p>
+                                        <a href="https://www.sharecare.com/brain-health-nervous-system/daydreaming-improves-brain-function"
+                                            target="_blank" class="btn btn-primary mt-5">Learn More</a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="col-md-4">
+                                <div class="card p-0" style="height: 38rem;">
+                                    <div class="card-img">
+                                        <a href=""> <img src="/image/healthArticle5.webp" class="img-fluid"
+                                                style="width: 450px; height: 300px;"></a>
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Could You Be in Danger of Serious Flu Complications?</h5>
+                                        <p class="card-text">Influenza can be dangerous, even deadly. Find out who
+                                            should be extra cautious, plus serious signs you shouldn't ignore.</p>
+                                        <a href="https://www.sharecare.com/infections/cold-flu/when-the-flu-becomes-dangerous"
+                                            target="_blank" class="btn btn-primary mt-5">Learn More</a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="col-md-4">
+                                <div class="card p-0" style="height: 38rem;">
+                                    <div class="card-img">
+                                        <a href=""> <img src="/image/healthArticle6.webp" class="img-fluid"
+                                                style="width: 450px; height: 300px;"></a>
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Coffee Doesn’t Cause Cancer, But Hot Drinks Might</h5>
+                                        <p class="card-text">WHO says there’s no link between coffee and cancer, but hot
+                                            beverages may be carcinogenic.</p>
+                                        <a href="https://www.sharecare.com/cancer/cancer-prevention/coffee-doesnt-cause-cancer-hot-drinks-might"
+                                            target="_blank" class="btn btn-primary mt-5">Learn More</a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev bg-transparent w-aut" href="#recipeCarousel" role="button"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    </a>
+                    <a class="carousel-control-next bg-transparent w-aut" href="#recipeCarousel" role="button"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    
+
+    <!-- 
+  ===============================
+           Footer
+  ===============================
+ -->
+    <div class="col-md-12" style="background-color: #0e1d1c;">
+        <div class="container">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-3 ">
+                        <h4 class="mt-5 mb-5" style="color: forestgreen;"> <span style="color: beige;">Doctors</span>
+                            Hospital</h4>
+                        <p style="color: beige;">Doctors Hospital is the best hospital in Lahore, providing world-class
+                            care to all patients. We are a multi-specialty hospital with cutting-edge integrated
+                            technology and Western-trained staff.</p>
+
+                    </div>
+                    <!-- Use Css .set -->
+                    <!-- General -->
+                    <div class="col-md-3  px-5">
+                        <ul class="list-unstyled mx-5">
+                            <li>
+                                <h4 class="mt-5 mb-5" style="color:#fff">General</h4>
+                            </li>
+                            <li>
+                                <a href="/mainpage.html" class="set">Home</a>
+                            </li>
+                            <li>
+                                <a href="/about.html" class="set">About</a>
+                            </li>
+                            <li>
+                                <a href="AdminPortal/signinportal.html" class="set">Services</a>
+                            </li>
+                            <li>
+                                <a href="/doctor.html" class="set">Doctor</a>
+                            </li>
+                            <li>
+                                <a href="departmentAnaesthesia.html" class="set">Department</a>
+                            </li>
+                            <li>
+                                <a href="/contact.html" class="set">Contect Us</a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+                    <!-- Email -->
+                    <div class="col-md-3 px-4">
+                        <ul class="list-unstyled">
+                          <li>
+                            <h4 class="mt-5 mb-5" style="color:#fff">Email</h4>
+                          </li>
+                          <li class="set">
+                            <i class="fas fa-envelope-open-dollar"></i>
+                            <a href="mailto:mfahadpk176@gmail.com" class="set mx-2">General Enquiry</a>
+                          </li>
+                          <li class="set">
+                            <i class="fas fa-envelope-open-dollar"></i>
+                            <a href="mailto:mehboobwaqar444@gmail.com" class="set mx-2">Suport,Complaints &
+                              Feedback</a>
+                          </li>
+                          <li class="set">
+                            <i class="fas fa-envelope-open-dollar"></i>
+                            <a href="mailto:mfahadpk176@gmail.com" class="set mx-2">JCI Related Concerns</a>
+                          </li>
+            
+                        </ul>
+            
+                      </div>
+                    <!-- support -->
+                    <div class="col-md-3 px-5">
+                        <ul class="list-unstyled mx-5 px-2">
+                            <li>
+                                <h4 class="mt-5 mb-5" style="color:#fff">Support</h4>
+                            </li>
+                            <li>
+                                <a href="/NewPatientRegistration.html" class="set" target="_blank">Sign Up</a>
+                            </li>
+                            <li>
+                                <a href="/signInPatient.html" class="set" target="_blank">Sign In</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr style="color: #39c7cc; height: 3px;">
+        <!-- Copyright -->
+        <div class="container">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-5">
+                        <p style="color: #fff;">©Copyright 2022. Doctors Hospital Hospital. All Rights Reserved.</p>
+                    </div>
+                    <div class="col-md-3">
+                        <ul class="list-unstyled d-flex justify-content-between px-3">
+                            <li>
+                                <a href="#" class="set" target="_blank">Privacy Policy</a>
+                            </li>
+                            <li>
+                                <a href="/about.html" class="set" target="_blank">About Us</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-1">
+
+                    </div>
+                    <div class="col-md-2">
+                        <ul class="list-unstyled d-flex justify-content-between">
+                            <li>
+                                <a href="https://www.facebook.com/mehboob.waqar.5?mibextid=ZbWKwL" class="set"
+                                    target="_blank"><i class="fab fa-facebook"></i></a>
+                            </li>
+                            <li>
+                                <a href="https://www.linkedin.com/in/muhammadfahadhussain/" class="set"
+                                    target="_blank"><i class="fab fa-linkedin"></i></a>
+                            </li>
+                            <li>
+                                <a href="https://instagram.com/its_sharii01?igshid=YmMyMTA2M2Y=" class="set"
+                                    target="_blank"><i class="fab fa-instagram"></i></a>
+                            </li>
+                            <li>
+                                <a href="https://www.twitter.com/" class="set" target="_blank"><i
+                                        class="fab fa-twitter"></i></a>
+                            </li>
+                            <li>
+                                <a href="https://www.youtube.com/" class="set" target="_blank"><i
+                                        class="fab fa-youtube"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <!-- use slider for  -->
+    <script>
+        let items = document.querySelectorAll('.carousel .carousel-item')
+
+        items.forEach((el) => {
+            const minPerSlide = 4
+            let next = el.nextElementSibling
+            for (var i = 1; i < minPerSlide; i++) {
+                if (!next) {
+                    // wrap carousel by using first child
+                    next = items[0]
+                }
+                let cloneChild = next.cloneNode(true)
+                el.appendChild(cloneChild.children[0])
+                next = next.nextElementSibling
+            }
+        })
+
+    </script>
+</body>
+
+</html>
