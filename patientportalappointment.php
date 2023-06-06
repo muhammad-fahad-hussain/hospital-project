@@ -177,7 +177,7 @@ if ($time > $_SESSION['end']) {
                         <h5 class="border p-3">Patient ID: <span id="patientID"><?php echo $patient_no ?></span></h5>
                     </div>
                 </div>
-
+                
                 <?php
                 if (isset($_SESSION['AppointmentStatus'])) {
                     ?>

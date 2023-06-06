@@ -463,5 +463,16 @@ if (isset($_POST['recp_delete_btn'])) {
     }
 }
 
+// ===================================================================================
+//Myappointment
+// ==================================================================================
+if (isset($_POST['searchAdppointment'])) {
+    $date = $_POST['date'];
+
+    $q = "SELECT COUNT(appointment_date) FROM appointmentportal WHERE DATE(appointment_date) = '$date'";
+    $result = mysqli_query($conn, $q);
+    $row = mysqli_fetch_array($result);
+    echo ' <h3 class="display-3">' . $row[0] . '</h3>';
+}
 
 ?>

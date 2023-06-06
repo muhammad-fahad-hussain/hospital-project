@@ -230,3 +230,17 @@ create table appointmentPortal
   foreign key (doctor_id) references doctor(doctor_id)
 
 );
+
+
+create table checkup
+(
+id int primary key,
+date date,
+doctor_id int,
+patient_id int,
+foreign key (doctor_id) references patient(),
+foreign key (patient_id) references doctor(patient_no),
+
+
+
+);

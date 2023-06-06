@@ -145,7 +145,7 @@ if ($time > $_SESSION['expire']) {
                         <?php
                         $query = "SELECT * from doctor as d inner JOIN appointmentportal as a on a.doctor_id=d.doctor_id 
                     inner JOIN patient as p on p.patient_no=a.patient_no INNER join appointmenttime as t
-                    on t.time_no=a.time_no where d.doctor_id='$doctor_id'";
+                    on t.time_no=a.time_no where d.doctor_id='$doctor_id' order by time asc";
                         $result = mysqli_query($conn, $query);
                         if (mysqli_num_rows($result) > 0) {
                             foreach ($result as $row) {

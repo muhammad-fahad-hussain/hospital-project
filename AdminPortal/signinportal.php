@@ -34,7 +34,7 @@ if (isset($_POST['signin'])) {
 
         if ($row && $row['employee_id'] == $username && $row['password'] == $password) {
             $_SESSION['start'] = time();
-            $_SESSION['expire'] = $_SESSION['start'] + 600;
+            $_SESSION['expire'] = $_SESSION['start'] + 6000;
             $_SESSION['doctor_id'] = $row['doctor_id'];
             header("Location: DoctorPortalmyAppointment.php");
             exit();
