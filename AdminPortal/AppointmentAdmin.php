@@ -361,13 +361,15 @@ if ($time > $_SESSION['expire']) {
                 <!-- end of php -->
                 <?php
             } else {
-                
-            ?>
-        </span></p>
-      
-    <div class="display-6 p-5">No appointments available on this <span><?php echo date("d/m/Y", strtotime($date)) ?>                                            </span></div>
-        <!-- row count end -->
-     <?php
+
+                ?>
+                </span></p>
+
+                <div class="display-6 p-5">No appointments available on this <span>
+                        <?php echo date("d/m/Y", strtotime($date)) ?>
+                    </span></div>
+                <!-- row count end -->
+                <?php
             }
         }
         // not searching

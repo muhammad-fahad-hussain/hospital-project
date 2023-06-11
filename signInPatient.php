@@ -8,7 +8,7 @@ if (isset($_POST['signinBtn'])) {
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
     if ($row && ($row['patient_no'] == $username && $row['password'] == $password) || $row && ($row['email'] == $username && $row['password'] == $password)) {
-        $_SESSION['end'] = time()+ 600;
+        $_SESSION['end'] = time()+ 6000;
         $_SESSION['patient_no'] = $row['patient_no'];
         $_SESSION['patient_name'] = $row['patient_name'];
         //  echo  $_SESSION['patient_no'];
@@ -17,8 +17,6 @@ if (isset($_POST['signinBtn'])) {
         $_SESSION['signinPatient'] = "Enter the correct password and username.";
     }
 }
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">

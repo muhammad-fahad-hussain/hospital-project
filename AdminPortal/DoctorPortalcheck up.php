@@ -21,12 +21,12 @@ if ($time > $_SESSION['expire']) {
     <link rel="stylesheet" href="doctorPortal.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
     <title>Admin Portal</title>
+    <script src="bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
-        .filtered-result {
-            background-color: yellow;
-            /* Add any other styling you want */
-        }
-
         a .navbar {
             display: none;
         }
@@ -41,15 +41,7 @@ if ($time > $_SESSION['expire']) {
             }
         }
 
-        .no-border {
-            border: none;
-            outline: none;
-        }
-
-        .no-border:focus {
-            box-shadow:0
-
-        }
+        
     </style>
 
 </head>
@@ -93,24 +85,25 @@ if ($time > $_SESSION['expire']) {
                     ?>
 
                 </h5>
-                <hr class="dropdown-divider bg-light mt-3">
+                <!-- <hr class="dropdown-divider bg-light mt-3">
                 <h4 class="mt-4 text-center text-dark"> <span class="text-center text-primary">
-                        <!-- date -->
-                        <form action="">            
+                        
+                        <form action="">
                             <div class="input-group p-3">
-                                <input type="date" class="form-control w-50 no-border" id="dateInput" >
-                                <button class="btn" type="submit" id=""><i class="fas fa-arrow-right fa-lg"></i></button>
+                                <input type="date" class="form-control w-50" id="dateInput">
+                                <button class="btn btn-outline-secondary" type="submit" id=""><i
+                                        class="fas fa-arrow-right fa-lg"></i></button>
                             </div>
                         </form>
                         <script>
-                            var currentDate = new Date();
-                            var dateInput = document.getElementById('dateInput');
-                            var formattedDate = currentDate.toISOString().slice(0, 10);
-                            dateInput.value = formattedDate;
+                            // var currentDate = new Date();
+                            // var dateInput = document.getElementById('dateInput');
+                            // var formattedDate = currentDate.toISOString().slice(0, 10);
+                            // dateInput.value = formattedDate;
                         </script>
-                </h4>
+                </h4> -->
                 <hr class="dropdown-divider bg-light mt-4">
-                <ul class="navbar-nav ">
+                <ul class="navbar-nav mt-4">
                     <li>
                         <a href="DoctorPortalmyAppointment.php" class="nav-link px-3">
                             <i class="fal fa-calendar-check"></i>
@@ -146,6 +139,8 @@ if ($time > $_SESSION['expire']) {
         </div>
     </div>
 
+
+
     <!-- 
         ===========================
                 Appointment
@@ -156,26 +151,23 @@ if ($time > $_SESSION['expire']) {
             <div class="container">
                 <div class="row">
                     <div class="col-lg-9">
-                        <h4>Appointments</h4>
-                        <p class="text-muted">You have following appointments today</p>
+                        <h4>Check Up</h4>
+                        <p class="text-muted">You have following Check Up</p>
                     </div>
                     <div class="col-lg-3">
-                        <p class="display-6 mt-4"> 
-                             <!-- current time -->
+                        <p class="display-6 mt-4">
+                            <!-- current time -->
                             <?php 
                             date_default_timezone_set('Asia/Karachi');
 
                             echo date("h:i", time());
                              ?>
-                             </p>
+                        </p>
                     </div>
                 </div>
                 <!-- Horizantal line -->
                 <hr class="dropdown-divider bg-light my-4">
-                <div class="container">
-                    <div class="row row-cols-1 row-cols-lg-2 p-5 pt-0">
-                        <!-- USING PHP IN  -->
-                        <?php
+                <?php
                         if (isset($_SESSION['appointmentAvalible'])) {
                             ?>
                             <div class="alert alert-success alert-dismissible" role="alert">
@@ -186,62 +178,78 @@ if ($time > $_SESSION['expire']) {
                             unset($_SESSION['appointmentAvalible']);
                         }
                         ?>
+                <div class="container">
+                    <div class="row row-cols-1 row-cols-lg-2 p-5 pt-0">
+                        <!-- USING PHP IN  -->
+                       
+
+                    </div>
+
+                    <div class="row row-cols-1 row-cols-lg-2 p-5 pt-0">
                         <!-- query -->
                         <?php
                         $query = "SELECT * from doctor as d inner JOIN appointmentportal as a on a.doctor_id=d.doctor_id 
                     inner JOIN patient as p on p.patient_no=a.patient_no INNER join appointmenttime as t
-                    on t.time_no=a.time_no where d.doctor_id='$doctor_id' order by time,appointment_date asc";
+                    on t.time_no=a.time_no where d.doctor_id='$doctor_id' order by time asc";
+
                         $result = mysqli_query($conn, $query);
                         if (mysqli_num_rows($result) > 0) {
                             foreach ($result as $row) {
-
                                 $date=date("Y-m-d");
                                 $time = date('H:i:s', time());
-                                if( $date===$row['appointment_date'] && '09:00:00'<$row['time'])
+                                if( $date===$row['appointment_date'] && $time<$row['time'])
                                 {
-                                $dob = date_diff(date_create($row['dob']), date_create(date("Y/m/d")))->format('%y');
+                                    $age = date_diff(date_create($row['dob']), date_create(date("Y/m/d")))->format('%y');
                                 echo '
                                 <div class="col mt-3">
-                                <div class="card w-75">
+                                <div class="card">
                                     <p class="card-header text-muted">' . $row['time'] . '</p>
                                     <div class="card-body">
-                                        <h6 class=""><span>' . $row['patient_name'] . '</span>, <span>'.$dob.'</span></h6>
-                                        <p class="text-muted pt-0">' . $row['status'] . '</p>
                                         <div class="row">
-                                            <div class="col-sm-4">
-                                                <a href="" class="call"><i class="far fa-envelope-open-text"
-                                                        style="color: #0a58ca !important; margin-right: 5px !important;"></i>Message</a>
+                                            <div class="col-lg-9">
+                                        <input type="hidden" value="' . $row['patient_no'] . '">
+                                                <h6 class=""><span>'.$row['patient_name'].'</span>, <span> ' . $age . '</span></h6>
+                                                <p class="text-muted pt-0">' . $row['status'] . '</p>
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <a href="tel:" class="call"><i
+                                                                class="far fa-envelope-open-text"
+                                                                style="color: #0a58ca !important; margin-right: 5px !important;"></i>Message</a>
+                                                    </div>
+                                                    <div class="col-sm-5">
+                                                        <a href="tel::<?php echo $row["contact"];" class="call mx-0"><i class="fal fa-phone-plus"
+                                                                style="color: #0a58ca !important; margin-right: 5px !important;"></i>Call</a>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="col-sm-5">
-                                                <a href="tel:" class="call mx-0"><i class="fal fa-phone-plus"
-                                                        style="color: #0a58ca !important; margin-right: 5px !important;"></i>Call</a>
+                                            <div class="col-lg-3">
+                                            <a class="btn btn-primary" href="checkup.php?patient_no='.$row['patient_no'].'&appointment_no='.$row['appointmentNo'].'">Check Up</a>
                                             </div>
-    
                                         </div>
                                     </div>
                                 </div>
                             </div>
                                 ';
+                                }
+                                
                             }
-                        } 
+
 
                         } else {
 
                             $_SESSION['appointmentAvalible'] = "Appointment not avalible";
                         }
                         ?>
+
                     </div>
-
                 </div>
-
             </div>
         </div>
     </main>
 
-    <script src="bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
-    <script src="bootstrap-5.1.3-dist/js/jquery-3.5.1.js"></script>
-  
+
+
+   
 </body>
 
 </html>

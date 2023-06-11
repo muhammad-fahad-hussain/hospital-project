@@ -26,8 +26,8 @@ if ($time > $_SESSION['end']) {
 
     <title>Patient Portal</title>
     <style>
-        @media screen and (max-width:991px){
-            .nav-btn{
+        @media screen and (max-width:991px) {
+            .nav-btn {
                 margin-top: 10px !important;
             }
         }
@@ -42,7 +42,9 @@ if ($time > $_SESSION['end']) {
                 aria-controls="offcanvasExample">
                 <span class="navbar-toggler-icon" data-bs-target="#sidebar"></span>
             </button>
-            <h3 class="mt-5 text-center text-white"><?php echo $_SESSION['patient_name'] ?></h3>
+            <h3 class="mt-3 text-center text-white">
+                <?php echo $_SESSION['patient_name'] ?>
+            </h3>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topNavBar"
                 aria-controls="topNavBar" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -74,20 +76,22 @@ if ($time > $_SESSION['end']) {
     <div class="offcanvas offcanvas-start sidebar-nav bg-dark" id="sidebar">
         <div class="offcanvas-body ">
             <nav class="navbar-dark">
-                
+
 
                 <!-- using php for show the name -->
                 <?php
-                
+
                 // $name="SELECT name FROM patient WHERE patient_no=$patient_no";
-            
+                
                 // $patient_no;
                 // $sql = "SELECT * FROM  patient as d  WHERE patient_no = '$patient_no'";
                 // $result = mysqli_query($conn, $sql);
                 // $row = mysqli_fetch_assoc($result); ?>
-                 <h3 class="mt-5 text-center text-white"><?php echo $_SESSION['patient_name'] ?></h3>
-                
-               
+                <h3 class="mt-5 text-center text-white">
+                    <?php echo $_SESSION['patient_name'] ?>
+                </h3>
+
+
                 <hr class="dropdown-divider bg-light mt-5">
                 <ul class="navbar-nav">
                     <li>
@@ -98,13 +102,13 @@ if ($time > $_SESSION['end']) {
                     </li>
 
                     <li>
-                        <a href="#" class="nav-link px-3">
+                        <a href="patientportalEdit.php" class="nav-link px-3">
                             <i class="far fa-edit"></i>
                             <span class="mx-1">Edit Profill</span>
                         </a>
                     </li>
                     <li>
-                        <a href="/patientportaldoctor.html" class="nav-link px-3">
+                        <a href="patientportaldoctor.php" class="nav-link px-3">
                             <i class="far fa-user-md"></i>
                             <span class="mx-2">Your Doctor</span>
                         </a>
@@ -116,7 +120,7 @@ if ($time > $_SESSION['end']) {
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link px-3">
+                        <a href="patientportalReport.php" class="nav-link px-3">
                             <i class="fas fa-envelope-square"></i>
                             <span class="mx-1">Report</span>
                         </a>
@@ -134,7 +138,7 @@ if ($time > $_SESSION['end']) {
                         </a>
                     </li>
                     <li>
-                        <a href="AdminPortal/logout.php" class="nav-link px-3">
+                        <a href="logout.php" class="nav-link px-3">
                             <i class="far fa-sign-out">
                                 <span class="mx-1">Logout</span>
                         </a>
@@ -142,9 +146,8 @@ if ($time > $_SESSION['end']) {
                 </ul>
             </nav>
         </div>
-        
-    </div>
 
+    </div>
 
     <!-- 
 
@@ -154,7 +157,7 @@ if ($time > $_SESSION['end']) {
      -->
 
 
-     <main class="mt-5 pt-5 ">
+    <main class="mt-5 pt-5 ">
         <div class="container-fluid">
             <div class="container">
                 <div class="row">
@@ -170,13 +173,30 @@ if ($time > $_SESSION['end']) {
                         <div class="card bg-success text-white" style="height: 12rem;">
                             <div class="card-body ">
                                 <h5 class="card-title d-flex">
-
                                     <span class="mt-4">
                                         <i class="far fa-clock fa-lg" style="color: #c0c7d3;"></i>
                                     </span>
-                                    <span class=" ms-auto">
-                                        <h5>24/04/2023</h5>
-                                        <p class="">9:00 AM</p>
+                                    <span class="ms-auto">
+                                        <!-- query -->
+                                        <?php
+                                        $scheduleCheck = "SELECT a.appointment_date,aTime.time FROM appointmentportal as a 
+                                        INNER JOIN appointmenttime as aTime ON a.time_no=aTime.time_no 
+                                        WHERE a.patient_no='$patient_no' ORDER BY a.appointment_date ASC LIMIT 1";
+
+                                        $scheduleCheckResult = mysqli_query($conn, $scheduleCheck);
+
+                                        if (mysqli_num_rows($scheduleCheckResult) > 0) {
+                                            $scheduleRow = mysqli_fetch_array($scheduleCheckResult);
+                                            echo '
+                                        <h5>' . $scheduleRow['appointment_date'] . '</h5>
+                                        <p class="">' . $scheduleRow['time'] . '</p>
+                                        ';
+                                        } else {
+                                            echo '
+                                                <h5 class="mb-3">No Appointment</h5>
+                                                ';
+                                        }
+                                        ?>
                                     </span>
                                 </h5>
                                 <h5 class="card-text mt-5 font-weight-bold">Schedule An Appointment</h5>
@@ -193,11 +213,27 @@ if ($time > $_SESSION['end']) {
                                         <i class="fas fa-calendar-alt fa-lg" style="color: #c0c7d3;"></i>
                                     </span>
                                     <span class=" ms-auto">
-                                        <h5>19/04/2023</h5>
-                                        <p class="">9:00 AM</p>
+                                        <!-- query -->
+                                        <?php
+                                        $Checkin = "SELECT c.date FROM checkup as c WHERE c.patient_id='$patient_no' ORDER BY c.date ASC LIMIT 1";
+                                        $CheckinResult = mysqli_query($conn, $Checkin);
+                                        if (mysqli_num_rows($CheckinResult) > 0) {
+                                            $scheduleRow = mysqli_fetch_array($CheckinResult);
+                                            echo '
+                                            <h5>' . $scheduleRow['date'] . '</h5>
+                                            ';
+                                        } else {
+                                            echo '
+                                                <h5>No Appointment</h5>
+                                                ';
+
+                                        }
+
+                                        ?>
+
                                     </span>
                                 </h5>
-                                <h5 class="card-text mt-5 font-weight-bold">Appointment Check-in</h5>
+                                <h5 class="card-text mt-5 pt-4 font-weight-bold">Appointment Check-in</h5>
                             </div>
 
                         </div>
@@ -209,12 +245,30 @@ if ($time > $_SESSION['end']) {
                                     <span class="mt-4">
                                         <i class="fal fa-user-md fa-lg" style="color: #c0c7d3;"></i>
                                     </span>
-                                    <span class="display-3 ms-auto">1</span>
+
+                                    <!-- query -->
+                                    <?php
+                                    $count = "SELECT count(r.doctor_id) as countDoctor FROM report_patient AS r WHERE r.patient_id =( SELECT p.patient_no FROM patient as p WHERE p.patient_no= '$patient_no' )";
+
+                                    $countCheck = mysqli_query($conn, $count);
+
+                                    if (mysqli_num_rows($countCheck) > 0) {
+                                        $countRow = mysqli_fetch_array($countCheck);
+                                        echo '
+                                            <span class="display-3 ms-auto">' . $countRow['countDoctor'] . '                                    </span>
+
+                                        ';
+                                    } else {
+                                        echo '
+                                                <h5 class="mb-3">0</h5>
+                                                ';
+                                    }
+                                    ?>
                                 </h5>
                                 <h5 class="card-text mt-4 font-weight-bold">List Of Doctor</h5>
                             </div>
                             <div class="card-footer">
-                                <a href="/patientportaldoctor.html" class="text-decoration-none text-white"> View
+                                <a href="patientportaldoctor.php" class="text-decoration-none text-white"> View
                                     Details</a>
                             </div>
                         </div>
@@ -223,16 +277,32 @@ if ($time > $_SESSION['end']) {
                         <div class="card bg-danger text-white" style=" height: 12rem;">
                             <div class="card-body ">
                                 <h5 class="card-title d-flex">
-
                                     <span class="mt-4">
                                         <i class="fal fa-file-chart-line fa-lg" style="color: #c0c7d3;"></i>
                                     </span>
-                                    <span class="display-3 ms-auto">1</span>
+                                    <!-- total count -->
+                                    <?php
+                                    $count = "SELECT COUNT(report.report_no) as count FROM report_patient AS report 
+                                        WHERE report.patient_id ='$patient_no'";
+                                    $countCheck = mysqli_query($conn, $count);
+
+                                    if (mysqli_num_rows($countCheck) > 0) {
+                                        $countRow = mysqli_fetch_array($countCheck);
+                                        echo '
+                                            <span class="display-3 ms-auto">' . $countRow['count'] . '                                    </span>
+
+                                        ';
+                                    } else {
+                                        echo '  <h5 class="mb-3">0</h5>
+                                                ';
+                                    }
+                                    ?>
                                 </h5>
                                 <h5 class="card-text mt-4 font-weight-bold">Reports</h5>
                             </div>
                             <div class="card-footer">
-                                View Details
+                                <a href="patientportalReport.php" class="text-decoration-none text-white"> View
+                                    Details</a>
                             </div>
                         </div>
                     </div>

@@ -1,3 +1,15 @@
+<?php
+session_start();
+$doctor_id = $_SESSION['doctor_id'];
+include "connection.php";
+$time = time();
+if ($time > $_SESSION['expire']) {
+    session_unset();
+    session_destroy();
+    header("Location: signinportal.php");
+    $_SESSION['signin'] = "Your are session is expire";
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,12 +17,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/bootstrap-5.1.3-dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/DoctorPortal/doctorPortal.css">
+    <link rel="stylesheet" href="bootstrap-5.1.3-dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="doctorPortal.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
     <title>Admin Portal</title>
-    <style>a
-        .navbar {
+    <style>
+        a .navbar {
             display: none;
         }
 
@@ -27,14 +39,7 @@
 </head>
 
 <body class="bg-light">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top ">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar">
-                <span class="navbar-toggler-icon" data-bs-target="#sidebar"></span>
-            </button>
 
-        </div>
-    </nav>
     <!-- top navigation bar -->
 
     <div class="offcanvas offcanvas-start sidebar-nav bg-white" id="sidebar">
@@ -42,51 +47,75 @@
             <nav class="navbar-dark">
                 <!-- Admin profill -->
                 <div class="mt-4 px-4">
-                    <img src="/image/doctor Picture.jpg" alt="Doctor Image" class="rounded-circle img-fluid mx-5 w-50">
+                    <!-- using php for img -->
+                    <?php
+                    $doctor_id;
+                    $s = "SELECT * FROM  doctor as d  WHERE doctor_id = '$doctor_id'";
+                    $r = mysqli_query($conn, $s);
+                    $ro = mysqli_fetch_assoc($r);
+                    echo '<img src="data:image/jpeg;base64,' . base64_encode($ro['image']) . '" alt="Doctor Image" class="rounded-circle img-fluid mx-5 w-50 " height="100px">
+                    ';
+                    ?>
                 </div>
-                <h4 class="mt-3 text-center text-dark"> <span class="text-center text-primary">Dr. </span><span>Doctor
-                        Name</span></h4>
-                <h5 class="text-muted text-center">Neurology</h5>
+                <h4 class="mt-3 text-center text-dark"> <span class="text-center text-primary">Dr. </span><span>
+                        <?php
+                        $doctor_id;
+                        $sql = "SELECT * FROM  doctor as d  WHERE doctor_id = '$doctor_id'";
+                        $result = mysqli_query($conn, $sql);
+                        $row = mysqli_fetch_assoc($result);
+                        echo '<span>' . $row['name'] . '</span>';
+                        ?>
+                    </span></h4>
+                <h5 class="text-muted text-center">
+                    <?php
+                    $doctor_id;
+                    $sql = "SELECT * FROM  doctor as d INNER JOIN speciality as s on d.speciality_id=s.speciality_id
+                      WHERE doctor_id = '$doctor_id'";
+                    $result = mysqli_query($conn, $sql);
+                    $row = mysqli_fetch_assoc($result);
+                    echo '<span>' . $row['speciality_name'] . '</span>';
+                    ?>
+
+                </h5>
                 <hr class="dropdown-divider bg-light mt-5">
                 <h4 class="mt-3 text-center text-dark"> <span class="text-center text-primary">Dr. </span><span>Doctor
                         Name</span></h4>
                 <hr class="dropdown-divider bg-light mt-5">
                 <ul class="navbar-nav ">
                     <li>
-                        <a href="/DoctorPortal/myAppointment.html" class="nav-link px-3">
+                        <a href="DoctorPortalmyAppointment.php" class="nav-link px-3">
                             <i class="fal fa-calendar-check"></i>
                             <span class="mx-2">Appointments</span>
                         </a>
                     </li>
                     <li>
-                        <a href="/DoctorPortal/myPatient.html" class="nav-link px-3">
+                        <a href="DoctorPortalmyPatient.php" class="nav-link px-3">
                             <i class="far fa-user-injured"></i>
                             <span class="mx-2">My Patients</span>
                         </a>
                     </li>
                     <li>
-                        <a href="/DoctorPortal/check up.html" class="nav-link px-3">
+                        <a href="DoctorPortalcheck up.php" class="nav-link px-3">
                             <i class="fal fa-user-nurse"></i>
                             <span class="mx-2">Check Up</span>
                         </a>
                     </li>
                     <li>
-                        <a href="/DoctorPortal/messagedoctor.html" class="nav-link px-3 active">
+                        <a href="DoctorPortalmyAppointment.php" class="nav-link px-3">
                             <i class="fas fa-envelope-square"></i>
                             <span class="mx-2">Messages</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link px-3">
+                        <a href="logout.php" class="nav-link px-3">
                             <i class="far fa-sign-out"></i>
-                            <span class="mx-2">Logout</span>
+                            <span class="mx-1">Logout</span>
                         </a>
                     </li>
                 </ul>
             </nav>
         </div>
     </div>
-
 
     <!-- 
      ===============
@@ -193,11 +222,11 @@
         </div>
     </main>
 
-    <script src="/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
-    <script src="/bootstrap-5.1.3-dist/js/jquery-3.5.1.js"></script>
-    <script src="/bootstrap-5.1.3-dist/js/jquery.dataTables.min.js"></script>
-    <script src="/bootstrap-5.1.3-dist/js/dataTables.bootstrap5.min.js"></script>
+    <script src="bootstrap-5.1.3-dist/js/jquery-3.5.1.js"></script>
+    <script src="bootstrap-5.1.3-dist/js/jquery.dataTables.min.js"></script>
+    <script src="bootstrap-5.1.3-dist/js/dataTables.bootstrap5.min.js"></script>
 </body>
 
 </html>

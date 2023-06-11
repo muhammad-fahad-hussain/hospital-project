@@ -11,6 +11,8 @@ if ($time > $_SESSION['end']) {
     $_SESSION['signin'] = "Your are session is expire";
 }
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,19 +23,13 @@ if ($time > $_SESSION['end']) {
     <link rel="stylesheet" href="bootstrap-5.1.3-dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="CSS/patientportal.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <script src="bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-
     <title>Patient Portal</title>
-
     <style>
-        .border:hover {
-            border-left: #0d6efd solid 3px !important;
-        }
-
         @media screen and (max-width:991px) {
             .nav-btn {
                 margin-top: 10px !important;
@@ -43,14 +39,16 @@ if ($time > $_SESSION['end']) {
 </head>
 
 <body>
-     <!-- top navigation bar -->
-     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top ">
+    <!-- top navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top ">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
                 aria-controls="offcanvasExample">
                 <span class="navbar-toggler-icon" data-bs-target="#sidebar"></span>
             </button>
-            <h3 class="mt-3 text-center text-white"><?php echo $_SESSION['patient_name'] ?></h3>
+            <h3 class="mt-3 text-center text-white">
+                <?php echo $_SESSION['patient_name'] ?>
+            </h3>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topNavBar"
                 aria-controls="topNavBar" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -82,20 +80,22 @@ if ($time > $_SESSION['end']) {
     <div class="offcanvas offcanvas-start sidebar-nav bg-dark" id="sidebar">
         <div class="offcanvas-body ">
             <nav class="navbar-dark">
-                
+
 
                 <!-- using php for show the name -->
                 <?php
-                
+
                 // $name="SELECT name FROM patient WHERE patient_no=$patient_no";
-            
+                
                 // $patient_no;
                 // $sql = "SELECT * FROM  patient as d  WHERE patient_no = '$patient_no'";
                 // $result = mysqli_query($conn, $sql);
                 // $row = mysqli_fetch_assoc($result); ?>
-                 <h3 class="mt-5 text-center text-white"><?php echo $_SESSION['patient_name'] ?></h3>
-                
-               
+                <h3 class="mt-5 text-center text-white">
+                    <?php echo $_SESSION['patient_name'] ?>
+                </h3>
+
+
                 <hr class="dropdown-divider bg-light mt-5">
                 <ul class="navbar-nav">
                     <li>
@@ -106,13 +106,13 @@ if ($time > $_SESSION['end']) {
                     </li>
 
                     <li>
-                        <a href="#" class="nav-link px-3">
+                        <a href="patientportalEdit.php" class="nav-link px-3">
                             <i class="far fa-edit"></i>
                             <span class="mx-1">Edit Profill</span>
                         </a>
                     </li>
                     <li>
-                        <a href="/patientportaldoctor.html" class="nav-link px-3">
+                        <a href="patientportaldoctor.php" class="nav-link px-3">
                             <i class="far fa-user-md"></i>
                             <span class="mx-2">Your Doctor</span>
                         </a>
@@ -124,7 +124,7 @@ if ($time > $_SESSION['end']) {
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link px-3">
+                        <a href="patientportalReport.php" class="nav-link px-3">
                             <i class="fas fa-envelope-square"></i>
                             <span class="mx-1">Report</span>
                         </a>
@@ -142,7 +142,7 @@ if ($time > $_SESSION['end']) {
                         </a>
                     </li>
                     <li>
-                        <a href="AdminPortal/logout.php" class="nav-link px-3">
+                        <a href="logout.php" class="nav-link px-3">
                             <i class="far fa-sign-out">
                                 <span class="mx-1">Logout</span>
                         </a>
@@ -150,38 +150,25 @@ if ($time > $_SESSION['end']) {
                 </ul>
             </nav>
         </div>
-        
+
     </div>
 
 
-    <!-- 
 
-        =====================================
-                   Make an Appointment
-        =====================================
-     -->
-
-
-    <main class="mt-5 pt-5 ">
+    <main class="mt-5 pt-5 px-5">
         <div class="container-fluid mx-5">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h4>Make Appointment</h4>
+                        <h4>Appointment</h4>
                     </div>
                 </div>
                 <!-- Horizantal line -->
-                <hr class="dropdown-divider bg-light my-4">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h5 class="border p-3">Patient ID: <span id="patientID"><?php echo $patient_no ?></span></h5>
-                    </div>
-                </div>
-                
+                <hr class="dropdown-divider bg-light my-4 px-5 ">
                 <?php
                 if (isset($_SESSION['AppointmentStatus'])) {
                     ?>
-                    <div class="alert alert-success alert-dismissible" role="alert">
+                    <div class="alert alert-danger alert-dismissible" role="alert">
                         <?php echo $_SESSION["AppointmentStatus"] ?>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close"></button>
                     </div>
@@ -190,94 +177,248 @@ if ($time > $_SESSION['end']) {
                     unset($_SESSION['AppointmentStatus']);
                 }
                 ?>
+                <div class="row ">
+                    <div class="col-lg-12">
+                        <h5 class="border p-3">Patient ID: <span id="patientID">
+                                <?php echo $patient_no ?>
+                            </span></h5>
+                        <button class="btn btn-danger mb-3 mt-2" onclick="cancelAppointment()">Cancel
+                            Appointment</button>
+                        <button class="btn btn-primary mb-3 mt-2" onclick="makeAppointment()">Make Appointment</button>
+                    </div>
+                </div>
 
-                <form action="main.php" method="POST">
-                    <div class="row mt-4">
-                        <input type="hidden" name="patientID" id="" value="<?php echo $patient_no ?>">
-                        <div class="col-lg-6">
-                            <label for="department" class="form-label">Select Department</label>
-                            <select name="department" id="department" class="form-select text-dark mt-2" required>
-                                <?php
-                                include "connection.php";
-                                $dept_query = "SELECT dept_no, dept_name FROM department";
-                                $department_result = mysqli_query($conn, $dept_query);
-                                foreach ($department_result as $row) {
-                                    echo "<option value='" . $row['dept_no'] . "'>" . $row['dept_name'] . "</option>";
-                                }
-                                $conn->close();
-                                ?>
-                            </select>
-                        </div>
 
-                        <div class="col-lg-6">
-                            <label for="" class="form-label">Select Doctor</label>
-                            <select name="doctorid" id="speciality" class="form-select text-dark mt-2" required>
-                                <option value="" class="" selected>Select
-                                    Doctor</option>
+                <!-- #region -->
 
-                                <script>
-                                    $(document).ready(function () {
-                                        $('#department').on('change', function (event) {
-                                            var dept_id = $(this).val();
-                                           // alert(dept_id);
-                                            $.post(
-                                                "main.php",
-                                                { department: dept_id },
-                                                function (data) {
-                                                    $("#speciality").html(data);
-                                                }
-                                            );
+                <div id="appointmentBooked" style="display:none">
+                    <hr>
+
+                    <div class="col-lg-12">
+                        <h4>Make Appointment</h4>
+                    </div>
+                    <form action="main.php" method="POST">
+                        <div class="row mt-4">
+                            <input type="hidden" name="patientID" id="" value="<?php echo $patient_no ?>">
+                            <div class="col-lg-6">
+                                <label for="department" class="form-label">Select Department</label>
+                                <select name="department" id="department" class="form-select text-dark mt-2" required>
+                                    <?php
+                                    include "connection.php";
+                                    $dept_query = "SELECT dept_no, dept_name FROM department";
+                                    $department_result = mysqli_query($conn, $dept_query);
+                                    foreach ($department_result as $row) {
+                                        echo "<option value='" . $row['dept_no'] . "'>" . $row['dept_name'] . "</option>";
+                                    }
+                                    $conn->close();
+                                    ?>
+                                </select>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <label for="" class="form-label">Select Doctor</label>
+                                <select name="doctorid" id="speciality" class="form-select text-dark mt-2" required>
+                                    <option value="" class="" selected>Select
+                                        Doctor</option>
+
+                                    <script>
+                                        $(document).ready(function () {
+                                            $('#department').on('change', function (event) {
+                                                var dept_id = $(this).val();
+                                                // alert(dept_id);
+                                                $.post(
+                                                    "main.php",
+                                                    { department: dept_id },
+                                                    function (data) {
+                                                        $("#speciality").html(data);
+                                                    }
+                                                );
+                                            });
                                         });
-                                    });
-                                </script>
-                            </select>
+                                    </script>
+                                </select>
+                            </div>
+
                         </div>
+                        <div class="row mt-4">
 
-                    </div>
-                    <div class="row mt-4">
+                            <div class="col-lg-6">
+                                <label for="appointment" class="form-label">Select appointment time</label>
+                                <select name="appointmentTime" id="appointment" class="form-select text-dark mt-2"
+                                    required>
+                                    <?php
+                                    include "connection.php";
+                                    $dept_query = "SELECT * FROM appointmentTime as a";
+                                    $department_result = mysqli_query($conn, $dept_query);
+                                    foreach ($department_result as $row) {
+                                        echo "<option value='" . $row['time_no'] . "'>" . $row['time'] . "</option>";
+                                    }
+                                    $conn->close();
+                                    ?>
+                                </select>
+                            </div>
 
-                        <div class="col-lg-6">
-                            <label for="appointment" class="form-label">Select appointment time</label>
-                            <select name="appointmentTime" id="appointment" class="form-select text-dark mt-2" required>
-                                <?php
-                                include "connection.php";
-                                $dept_query = "SELECT * FROM appointmentTime as a";
-                                $department_result = mysqli_query($conn, $dept_query);
-                                foreach ($department_result as $row) {
-                                    echo "<option value='" . $row['time_no'] . "'>" . $row['time'] . "</option>";
-                                }
-                                $conn->close();
+                            <div class="col-lg-6">
+                                <label for="appointment" class="form-label">Select Appointment Date</label>
+                                <input type="date" name="appointment_date" id="appointment_date"
+                                    class="form-control mt-2 ">
+
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-lg-6">
+                                <label for="appointment" class="form-label">Diseases</label>
+                                <input type="text" name="status" id="status" class="form-control mt-2 "
+                                    placeholder="Diseases" required>
+
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-lg-7">
+                                <label for="message" class="form-label">Message</label>
+                                <textarea class="form-control" name="message" id="message" rows="5"
+                                    placeholder="Message" required></textarea>
+
+                            </div>
+                        </div>
+                        <input type="submit" name="appointmentPortal" id="" class="btn btn-primary mx-2 mb-3 mt-3"
+                            value="Appointment Booked">
+                    </form>
+                </div>
+                <!-- cancel Appointment -->
+                <div id="cancelAppointment" style="display:none">
+                    <div class="row row-cols-1 row-cols-md-2 g-3">
+                        <?php
+                        $con = mysqli_connect('localhost', 'root', '', 'hospital_project');
+                        // query
+                        $s = "SELECT a.appointmentNo ,a.appointment_date,aTime.time, a.dept_no, d.name, dept.dept_name
+                FROM appointmentportal AS a
+                INNER JOIN doctor AS d ON d.doctor_id = a.doctor_id
+                INNER JOIN department AS dept ON dept.dept_no = a.dept_no
+                INNER JOIN appointmenttime as aTime ON aTime.time_no=a.time_no
+                WHERE a.patient_no ='$patient_no'
+                ORDER BY a.appointment_date,a.time_no";
+                        $sqlResult = mysqli_query($con, $s);
+                        foreach ($sqlResult as $row1) {
+                            $appointmentNo = $row1['appointmentNo'];
+                            $date = date("Y-m-d");
+                            $time = date('H:i:s', time());
+                             if( $date<$row1['appointment_date'] && $time<$row1['time'])
+                            //if ($date < $row1['appointment_date'])
+                             {
                                 ?>
-                            </select>
-                        </div>
+                                <div class="col">
+                                    <div class="card " style="width:300px">
+                                        <div class="card-header">
+                                            <h5>Appointment</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="d-flex justify-content-between justify-content-left">
+                                                <span>Department Name:</span>
+                                                <span>
+                                                    <?php echo $row1['dept_name']; ?>
+                                                </span>
+                                            </p>
+                                            <p class="d-flex justify-content-between justify-content-left">
+                                                <span>Doctor Name:</span>
+                                                <span>
+                                                    <?php echo $row1['name']; ?>
+                                                </span>
+                                            </p>
+                                            <p class="d-flex justify-content-between justify-content-left">
+                                                <span>Date:</span>
+                                                <span>
+                                                    <?php echo $row1['appointment_date']; ?>
+                                                </span>
+                                            </p>
+                                            <p class="d-flex justify-content-between justify-content-left">
+                                                <span>Time:</span>
+                                                <span>
+                                                    <?php echo $row1['time']; ?>
+                                                </span>
+                                            </p>
+                                            <a class="btn btn-danger delete_btnTB">Cancel</a>
+                                        </div>
+                                    </div>
 
-                        <div class="col-lg-6">
-                            <label for="appointment" class="form-label">Select Appointment Date</label>
-                            <input type="date" name="appointment_date" id="appointment_date" class="form-control mt-2 ">
-
-                        </div>
+                                </div>
+                                <?php
+                            }
+                        }
+                        ?>
                     </div>
-                    <div class="row mt-4">
-                        <div class="col-lg-6">
-                            <label for="appointment" class="form-label">Status</label>
-                            <input type="text" name="status" id="status" class="form-control mt-2 " placeholder="Status" required>
-
-                        </div>
-                    </div>
-                    <div class="row mt-4">
-                        <div class="col-lg-7">
-                            <label for="message" class="form-label">Message</label>
-                            <textarea class="form-control" name="message" id="message" rows="5" placeholder="Message"
-                                    required></textarea>
-
-                        </div>
-                    </div>
+                </div>
             </div>
-            <input type="submit" name="appointmentPortal" id="" class="btn btn-primary mx-2 mb-3 mt-3" value="Appointment Booked">
-            </form>
-        </div>
         </div>
     </main>
+
+    <!-- Delete Button Modal -->
+    <div class="modal" id="deletemodal">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Confirm Delete</h3>
+                    <button class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you confirming?</p>
+                </div>
+
+                <div class="modal-footer">
+                    <div class="viewing_form_delete"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+
+        $(document).ready(function () {
+            $('.delete_btnTB').click(function (e) {
+                e.preventDefault();
+
+                var id = <?php echo $appointmentNo ?>;
+                //alert(id);
+
+                $.ajax({
+                    type: "POST",
+                    url: "main.php",
+                    data: {
+                        'checking_delete_btn': true,
+                        'id_': id,
+                    },
+                    success: function (response) {
+                        // alert(response);
+
+                        $('.viewing_form_delete').html(response);
+                        $('#deletemodal').modal('show');
+
+                    }
+                });
+            });
+        });
+    </script>
+
+
+    <script>
+        function makeAppointment() {
+            var appointmentBooked = document.getElementById("appointmentBooked");
+            var cancelAppointment = document.getElementById("cancelAppointment");
+
+            appointmentBooked.style.display = "block";
+            cancelAppointment.style.display = "none";
+        }
+
+        function cancelAppointment() {
+            var appointmentBooked = document.getElementById("appointmentBooked");
+            var cancelAppointment = document.getElementById("cancelAppointment");
+
+            appointmentBooked.style.display = "none";
+            cancelAppointment.style.display = "block";
+        }
+    </script>
 
 </body>
 

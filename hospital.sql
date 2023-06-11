@@ -230,17 +230,164 @@ create table appointmentPortal
   foreign key (doctor_id) references doctor(doctor_id)
 
 );
+CREATE VIEW appointment_view AS
+SELECT
+  appointmentNo,
+  appointment_date,
+  status,
+  message,
+  dept_no,
+  time_no,
+  patient_no,
+  doctor_id
+FROM appointmentPortal;
+
 
 
 create table checkup
 (
-id int primary key,
+checkup_id int primary key ,
 date date,
 doctor_id int,
 patient_id int,
-foreign key (doctor_id) references patient(),
-foreign key (patient_id) references doctor(patient_no),
-
-
+foreign key (doctor_id) references doctor(doctor_id),
+foreign key (patient_id) references patient(patient_no)
 
 );
+
+create table medicine
+(
+medicine_no int primary key,--AUTO_INCREMENT
+name varchar(50),
+report_no int,
+foreign key (report_no) references report_patient(report_no)
+
+);
+
+create table admit
+(
+admit_no int primary key --AUTO_INCREMENT,
+room_no int,
+bed_no int,
+patient_no int,
+
+ foreign key (room_no) references room(room_no),
+  foreign key (bed_no) references beds(bed_no),
+  foreign key (patient_no) references patient(patient_no)
+);
+
+create table room
+(
+room_no int primary key,
+status varchar(50)
+);
+
+create table beds
+(
+bed_no int primary key,
+status varchar(50),
+room_no int,
+ foreign key (room_no) references room(room_no)
+
+);
+
+
+create table report_patient
+(
+report_no int primary key --auto-increment,
+diseases varchar(100),
+report_text text,
+doctor_id int,
+patient_id int,
+foreign key (doctor_id) references doctor(doctor_id),
+foreign key (patient_id) references patient(patient_no)
+);
+
+-- Insert 20 rooms
+INSERT INTO room (room_no, status) VALUES
+  (1, 'Vacant'),
+  (2, 'Vacant'),
+  (3, 'Vacant'),
+  (4, 'Vacant'),
+  (5, 'Vacant'),
+  (6, 'Vacant'),
+  (7, 'Vacant'),
+  (8, 'Vacant'),
+  (9, 'Vacant'),
+  (10, 'Vacant'),
+  (11, 'Vacant'),
+  (12, 'Vacant'),
+  (13, 'Vacant'),
+  (14, 'Vacant'),
+  (15, 'Vacant'),
+  (16, 'Vacant'),
+  (17, 'Vacant'),
+  (18, 'Vacant'),
+  (19, 'Vacant'),
+  (20, 'Vacant');
+
+-- Insert beds for each room
+INSERT INTO beds (bed_no, status, room_no) VALUES
+  -- Room 1
+  (1, 'Vacant', 1),
+  (2, 'Vacant', 1),
+  -- Room 2
+  (3, 'Vacant', 2),
+  (4, 'Vacant', 2),
+  -- Room 3
+  (5, 'Vacant', 3),
+  (6, 'Vacant', 3),
+  -- Room 4
+  (7, 'Vacant', 4),
+  (8, 'Vacant', 4),
+  -- Room 5
+  (9, 'Vacant', 5),
+  (10, 'Vacant', 5),
+  -- Room 6
+  (11, 'Vacant', 6),
+  (12, 'Vacant', 6),
+  -- Room 7
+  (13, 'Vacant', 7),
+  (14, 'Vacant', 7),
+  -- Room 8
+  (15, 'Vacant', 8),
+  (16, 'Vacant', 8),
+  -- Room 9
+  (17, 'Vacant', 9),
+  (18, 'Vacant', 9),
+  -- Room 10
+  (19, 'Vacant', 10),
+  (20, 'Vacant', 10),
+  -- Room 11
+  (21, 'Vacant', 11),
+  (22, 'Vacant', 11),
+  -- Room 12
+  (23, 'Vacant', 12),
+  (24, 'Vacant', 12),
+  -- Room 13
+  (25, 'Vacant', 13),
+  (26, 'Vacant', 13),
+  -- Room 14
+  (27, 'Vacant', 14),
+  (28, 'Vacant', 14),
+  -- Room 15
+  (29, 'Vacant', 15),
+  (30, 'Vacant', 15),
+  -- Room 16
+  (31, 'Vacant', 16),
+  (32, 'Vacant', 16),
+  -- Room 17
+  (33, 'Vacant', 17),
+  (34, 'Vacant', 17),
+  -- Room 18
+  (35, 'Vacant', 18),
+  (36, 'Vacant', 18),
+  -- Room 19
+  (37, 'Vacant', 19),
+  (38, 'Vacant', 19),
+  -- Room 20
+  (39, 'Vacant', 20),
+  (40, 'Vacant', 20);
+
+
+ 

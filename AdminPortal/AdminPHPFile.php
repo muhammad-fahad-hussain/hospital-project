@@ -173,7 +173,7 @@ if (isset($_POST['UpdateDoctorform'])) {
         $_SESSION['doctorAdminAlert'] = "Update the record successfully";
         header("Location: doctorAdmin.php");
     } else {
-        $_SESSION['doctorAdminAlert'] = "Update the record successfully";
+        $_SESSION['doctorAdminAlert'] = "Delete the record successfully";
         header("Location: doctorAdmin.php");
     }
 }
@@ -399,7 +399,6 @@ if (isset($_POST['checking_Recp_update_btn'])) {
 }
 
 if (isset($_POST['recp_update_btn'])) {
-
     $id = $_POST['receptionist_id'];
 
     $name = $_POST['update_name'];
@@ -464,7 +463,7 @@ if (isset($_POST['recp_delete_btn'])) {
 }
 
 // ===================================================================================
-//Myappointment
+//                               Myappointment
 // ==================================================================================
 if (isset($_POST['searchAdppointment'])) {
     $date = $_POST['date'];

@@ -66,7 +66,7 @@ if (isset($_POST['signin'])) {
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <style>
         .Sign_IN {
-            background-image: url('image/signup.jpg');
+            background-image: url('signip.jpg');
             height: 100vh;
             width: 100%;
             object-fit: cover;
